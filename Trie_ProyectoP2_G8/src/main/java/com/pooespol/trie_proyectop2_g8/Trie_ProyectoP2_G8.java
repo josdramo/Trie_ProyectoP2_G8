@@ -12,6 +12,20 @@ package com.pooespol.trie_proyectop2_g8;
 public class Trie_ProyectoP2_G8 {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        BinaryTree<Integer> abb = new BinaryTree<>((a, b) -> a.compareTo(b));
+        abb.add(8);
+        abb.add(3);
+        abb.add(1);
+        abb.add(20);
+        abb.add(10);
+        abb.add(5);
+        abb.add(4);
+        System.out.println("--Arbol binario de busqueda---");
+        System.out.println("(Imagen del arbol en la carpeta src)");
+        System.out.println("Recorrido en pre orden");
+        System.out.println(abb.PreOrderTransversal());
+        
+        
+
     }
 }
