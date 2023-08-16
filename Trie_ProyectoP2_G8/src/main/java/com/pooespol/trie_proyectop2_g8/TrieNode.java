@@ -31,4 +31,11 @@ class TrieNode {
     public void setEndOfWord(boolean endOfWord) {
         this.endOfWord = endOfWord;
     }
+
+    @Override
+    public String toString() {
+        return "TrieNode{" + "children=" + children + ", endOfWord=" + endOfWord + '}';
+    }
+    
+    
 }
