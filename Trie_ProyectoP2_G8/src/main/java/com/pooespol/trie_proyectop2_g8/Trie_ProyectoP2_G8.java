@@ -19,21 +19,5 @@ public class Trie_ProyectoP2_G8 {
         abb.insertarPalabra("h0la");
         abb.insertarPalabra("cono");
         
-        //System.out.println("Deberia salir true: "+abb.buscarPalabra("Hola"));
-        //System.out.println("Deberia salir true: "+abb.buscarPalabra("hola"));
-        //System.out.println("Deberia salir true: "+abb.buscarPalabra("h0la"));
-        
-        System.out.println("Deberia salir true: "+abb.eliminarPalabra("Hola"));
-        System.out.println("");
-        System.out.println("Deberia salir false: "+abb.eliminarPalabra("Hola"));
-        System.out.println("");
-        System.out.println("Deberia salir true: "+abb.eliminarPalabra("cono"));
-        
-        //System.out.println("Deberia salir false: "+abb.buscarPalabra("Hola"));
-        
-        System.out.println("Deberia salir true: "+abb.eliminarPalabra("hola"));
-        //System.out.println("Deberia salir false: "+abb.buscarPalabra("hola"));
-        
-        //System.out.println("Deberia salir true: "+abb.buscarPalabra("h0la"));
     }
 }
