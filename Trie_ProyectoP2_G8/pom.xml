@@ -39,6 +39,13 @@
                 <configuration>
                     <mainClass>com.main.App</mainClass>
                 </configuration>
+                <executions>
+                    <execution>
+                        <!-- Default configuration for running -->
+                        <!-- Usage: mvn clean javafx:run -->
+                        <id>default-cli</id>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
