@@ -4,16 +4,16 @@
  */
 package controllers;
 
-import com.main.App;
+import com.main.ViewManager;
 
 public class Controller {
-    private App app;
+    private ViewManager viewManager;
 
-    public App getApp() {
-        return app;
+    public ViewManager getViewManager() {
+        return viewManager;
     }
 
-    public void setApp(App app) {
-        this.app = app;
+    public void setViewManager(ViewManager viewManager) {
+        this.viewManager = viewManager;
     }
 }
