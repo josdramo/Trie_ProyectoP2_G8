@@ -11,8 +11,11 @@ import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 public class ViewManager {
+    
+    private Stage stage;
     
     private Scene mainScene;
     
@@ -36,5 +39,15 @@ public class ViewManager {
         controller.setViewManager(this);
         
         return new Scene(parent);
+    }
+    
+    public void showMainView() {
+        this.stage.setTitle("Yada Yada Diccionario");
+        this.stage.setScene(mainScene);
+        this.stage.show();
+    }
+    
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 }

@@ -13,6 +13,8 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         ViewManager viewManager = new ViewManager();
+        viewManager.setStage(primaryStage);
         viewManager.loadViews();
+        viewManager.showMainView();
     }
 }
