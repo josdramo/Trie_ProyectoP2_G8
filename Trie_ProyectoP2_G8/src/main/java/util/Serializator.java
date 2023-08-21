@@ -23,7 +23,7 @@ public class Serializator {
                 out.writeObject(object);
             }
         } catch (IOException e) {
-            System.out.println("[ERROR] Serialization.serialize");
+            System.out.println("[ERROR] Ha ocurrido un error durante la serialización yada yada.");
         }
     }
     
@@ -39,7 +39,7 @@ public class Serializator {
             return object;
         } catch (IOException | ClassNotFoundException e) {
             //e.printStackTrace();
-            System.out.println("[ERROR] Archivo deserializable no encontrado.");
+            System.out.println("[ERROR] Archivo deserializable no encontrado yada yada.");
             if (fileIn != null) {
                 try {
                     fileIn.close();

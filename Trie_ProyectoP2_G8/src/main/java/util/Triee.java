@@ -4,11 +4,12 @@
  */
 package util;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Triee {
+public class Triee implements Serializable {
     private final TrieNode root;
 
     public Triee() {
@@ -67,7 +68,7 @@ public class Triee {
     }
 }
 
-class TrieNode {
+class TrieNode implements Serializable {
     HashMap<Character, TrieNode> children;
     boolean isEndOfWord;
 
