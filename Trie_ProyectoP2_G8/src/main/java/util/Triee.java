@@ -7,7 +7,7 @@ package util;
 import java.util.HashMap;
 
 public class Triee {
-    private TrieNode root;
+    private final TrieNode root;
 
     public Triee() {
         root = new TrieNode();
