@@ -10,4 +10,7 @@ package com.main;
  */
 public class Constantes {
     public static final String APP_STATE_FILE_PATH = "state.se";
+    public static final String VIEW_MAIN_FILE_PATH = "views/main.fxml";
+    
+    public static final String VIEW_MAIN_TITLE = "Yada Yada Diccionario";
 }

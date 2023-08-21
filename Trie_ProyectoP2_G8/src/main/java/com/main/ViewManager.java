@@ -21,7 +21,7 @@ public class ViewManager {
     
     public void loadViews() {
         try {
-            mainScene = loadScene("views/main.fxml");
+            mainScene = loadScene(Constantes.VIEW_MAIN_FILE_PATH);
         } catch (IOException ex) {
             Logger.getLogger(ViewManager.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -41,7 +41,7 @@ public class ViewManager {
     }
     
     public void showMainView() {
-        this.stage.setTitle("Yada Yada Diccionario");
+        this.stage.setTitle(Constantes.VIEW_MAIN_TITLE);
         this.stage.setScene(mainScene);
         this.stage.show();
     }
