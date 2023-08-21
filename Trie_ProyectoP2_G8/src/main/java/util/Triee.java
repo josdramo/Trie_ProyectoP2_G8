@@ -4,7 +4,9 @@
  */
 package util;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Triee {
     private final TrieNode root;
@@ -23,17 +25,34 @@ public class Triee {
         currentNode.isEndOfWord = true;
     }
 
-    public boolean search(String word) {
+    public List<String> search(String prefix) {
+        List<String> result = new ArrayList<>();
         TrieNode currentNode = root;
-        for (int i = 0; i < word.length(); i++) {
-            char ch = word.charAt(i);
+
+        for (int i = 0; i < prefix.length(); i++) {
+            char ch = prefix.charAt(i);
             if (!currentNode.children.containsKey(ch)) {
-                return false;
+                return result;
             }
             currentNode = currentNode.children.get(ch);
         }
-        return currentNode.isEndOfWord;
+
+        collectWordsFromNode(currentNode, prefix, result);
+
+        return result;
     }
+
+    private void collectWordsFromNode(TrieNode node, String currentPrefix, List<String> result) {
+        if (node.isEndOfWord) {
+            result.add(currentPrefix);
+        }
+
+        for (char ch : node.children.keySet()) {
+            TrieNode childNode = node.children.get(ch);
+            collectWordsFromNode(childNode, currentPrefix + ch, result);
+        }
+    }
+    
 
     public boolean startsWith(String prefix) {
         TrieNode currentNode = root;
