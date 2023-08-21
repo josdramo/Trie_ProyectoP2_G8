@@ -6,6 +6,8 @@ package com.main;
 
 import controllers.Controller;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,8 +16,13 @@ public class ViewManager {
     
     private Scene mainScene;
     
-    public void loadViews() throws IOException {
-        mainScene = loadScene("views/main.fxml");
+    public void loadViews() {
+        try {
+            mainScene = loadScene("views/main.fxml");
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+            Logger.getLogger(ViewManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     private Scene loadScene(String filePath) throws IOException {
