@@ -23,7 +23,6 @@ public class ViewManager {
         try {
             mainScene = loadScene("views/main.fxml");
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
             Logger.getLogger(ViewManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
