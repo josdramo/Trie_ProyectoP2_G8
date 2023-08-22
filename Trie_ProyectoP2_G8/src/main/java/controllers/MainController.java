@@ -4,6 +4,8 @@
  */
 package controllers;
 
+import com.main.AppState;
+import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
@@ -43,10 +45,29 @@ public class MainController extends Controller {
     }
     
     public void onAgregarPalabra() {
-        
+        String palabra = buscadorTextField.getText();
+        if (!palabra.isEmpty()) {
+            AppState.getInstance().getDiccionario().insert(palabra);
+            buscadorTextField.clear();
+            clearBuscadorListView();
+            
+            System.out.println("Agregado");
+        }
     }
     
     public void onRemoverPalabra() {
         
+    }
+    
+    public void onBuscar() {
+        clearBuscadorListView();
+        
+        List<String> sugerencias = AppState.getInstance().getDiccionario().search(buscadorTextField.getText());
+        
+        buscadorListView.getItems().addAll(sugerencias);
+    }
+    
+    public void clearBuscadorListView() {
+        buscadorListView.getItems().clear();
     }
 }

@@ -133,7 +133,7 @@
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="buscadorTextField" prefHeight="26.0" prefWidth="376.0" />
+                  <TextField fx:id="buscadorTextField" onKeyTyped="#onBuscar" prefHeight="26.0" prefWidth="376.0" />
                   <ListView fx:id="buscadorListView" prefHeight="400.0" prefWidth="649.0" />
                   <ButtonBar prefHeight="40.0" prefWidth="200.0">
                     <buttons>
