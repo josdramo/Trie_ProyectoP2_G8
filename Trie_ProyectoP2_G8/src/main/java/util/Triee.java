@@ -15,6 +15,12 @@ public class Triee implements Serializable {
     public Triee() {
         root = new TrieNode();
     }
+    
+    public void insertarPalabras(List<String> palabras) {
+        for (String palabra : palabras) {
+            insert(palabra);
+        }
+    }
 
     public void insert(String word) {
         TrieNode currentNode = root;

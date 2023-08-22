@@ -57,7 +57,7 @@
       <menus>
         <Menu mnemonicParsing="false" text="File">
           <items>
-            <MenuItem mnemonicParsing="false" text="Cargar" />
+            <MenuItem mnemonicParsing="false" onAction="#onCargar" text="Cargar" />
             <MenuItem mnemonicParsing="false" text="Exportar" />
             <Menu mnemonicParsing="false" text="Guardar" />
             <SeparatorMenuItem mnemonicParsing="false" />

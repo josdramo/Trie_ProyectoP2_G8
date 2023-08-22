@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import util.Serializator;
+import views.BuscarArchivo;
 
 public class App extends Application {
     
@@ -14,6 +15,8 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         restaurar();
+        
+        BuscarArchivo.getInstance().setParentStage(primaryStage);
         
         ViewManager manager = new ViewManager();
         

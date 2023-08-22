@@ -7,9 +7,14 @@ package controllers;
 import com.main.AppState;
 import java.util.List;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import util.FileParser;
+import views.BuscarArchivo;
+import views.Notificacion;
 
 /**
  *
@@ -57,6 +62,21 @@ public class MainController extends Controller {
     
     public void onRemoverPalabra() {
         
+    }
+    
+    public void onCargar() {
+        BuscarArchivo buscarArchivo = BuscarArchivo.getInstance();
+        String filePath = buscarArchivo.show();
+        
+        FileParser fileParser = new FileParser(filePath);
+        AppState.getInstance().getDiccionario().insertarPalabras(fileParser.parse());
+        
+        Notificacion notificacion = Notificacion.getInstance();
+        notificacion.setAlertType(AlertType.INFORMATION);
+        notificacion.setTitle("Éxito");
+        notificacion.setHeaderText("Operación completada");
+        notificacion.setContentText("Archivo cargado correctamente");
+        notificacion.show();
     }
     
     public void onBuscar() {
