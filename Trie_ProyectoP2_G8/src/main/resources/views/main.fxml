@@ -51,7 +51,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="599.0" prefWidth="729.0" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
+<VBox prefHeight="599.0" prefWidth="729.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -105,9 +105,9 @@
                         </Label>
                         <HBox spacing="5.0">
                            <children>
-                              <TextField fx:id="delimitadoresTextField" prefHeight="26.0" prefWidth="154.0" />
-                              <Button mnemonicParsing="false" onAction="#onAgregarDelimitador" text="+" />
-                              <Button mnemonicParsing="false" onAction="#onEliminarDelimitador" text="x" />
+                              <TextField fx:id="delimitadoresTextField" prefHeight="25.0" prefWidth="140.0" />
+                              <Button mnemonicParsing="false" onAction="#onAgregarDelimitador" prefWidth="25.0" text="+" />
+                              <Button mnemonicParsing="false" onAction="#onEliminarDelimitador" prefWidth="25.0" text="x" />
                            </children>
                         </HBox>
                         <ListView fx:id="delimitadoresListView" prefHeight="424.0" prefWidth="202.0" />

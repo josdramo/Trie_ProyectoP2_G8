@@ -7,6 +7,7 @@ package controllers;
 import com.main.AppState;
 import java.util.List;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
@@ -38,11 +39,42 @@ public class MainController extends Controller {
     private ListView buscadorListView;
 
     public void onAgregarDelimitador() {
-
+        String palabra = delimitadoresTextField.getText().trim(); 
+        if (!palabra.isEmpty()) {
+            if (!delimitadoresListView.getItems().contains(palabra)) {
+                delimitadoresListView.getItems().add(palabra);
+                delimitadoresTextField.clear();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Advertencia");
+                alert.setHeaderText("Duplicación de delimitador");
+                alert.setContentText("El delimitador ya está en la lista.");
+                alert.showAndWait();
+            }
+        }
     }
 
     public void onEliminarDelimitador() {
+        int indiceSeleccionado = delimitadoresListView.getSelectionModel().getSelectedIndex();
 
+        if (indiceSeleccionado != -1) {
+        String palabraEliminada = (String) delimitadoresListView.getItems().get(indiceSeleccionado);
+        delimitadoresListView.getItems().remove(indiceSeleccionado);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Información");
+        alert.setHeaderText("Palabra eliminada");
+        alert.setContentText("La palabra '" + palabraEliminada + "' ha sido eliminada.");
+        alert.showAndWait();
+        } else {
+            String textoDelTextField = delimitadoresTextField.getText().trim();
+            if (textoDelTextField.isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Advertencia");
+                alert.setHeaderText("Nada seleccionado");
+                alert.setContentText("Por favor, selecciona una palabra de la lista de delimitadores para eliminar.");
+                alert.showAndWait();
+            }
+        }
     }
 
     public void onBusquedaInversa() {
