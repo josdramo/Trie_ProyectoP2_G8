@@ -10,12 +10,13 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Triee implements Serializable {
+
     private final TrieNode root;
 
     public Triee() {
         root = new TrieNode();
     }
-    
+
     public void insertarPalabras(List<String> palabras) {
         for (String palabra : palabras) {
             insert(palabra);
@@ -30,6 +31,39 @@ public class Triee implements Serializable {
             currentNode = currentNode.children.get(ch);
         }
         currentNode.isEndOfWord = true;
+    }
+
+    public boolean eliminarPalabra(String palabra) {
+        return eliminar(root, palabra, 0);
+    }
+
+    private boolean eliminar(TrieNode nodoActual, String palabra, int indice) {
+        if (indice == palabra.length()) {
+
+            if (!nodoActual.isEndOfWord) {
+
+                return false;
+            }
+            nodoActual.isEndOfWord = false;
+            return nodoActual.children.isEmpty();
+        }
+
+        char ch = palabra.charAt(indice);
+        TrieNode childNode = nodoActual.children.get(ch);
+
+        if (childNode == null) {
+
+            return false;
+        }
+
+        boolean shouldDeleteChild = eliminar(childNode, palabra, indice + 1);
+
+        if (shouldDeleteChild) {
+            nodoActual.children.remove(ch);
+            return nodoActual.children.isEmpty() && !nodoActual.isEndOfWord;
+        }
+
+        return false;
     }
 
     public List<String> search(String prefix) {
@@ -59,7 +93,6 @@ public class Triee implements Serializable {
             collectWordsFromNode(childNode, currentPrefix + ch, result);
         }
     }
-    
 
     public boolean startsWith(String prefix) {
         TrieNode currentNode = root;
@@ -75,6 +108,7 @@ public class Triee implements Serializable {
 }
 
 class TrieNode implements Serializable {
+
     HashMap<Character, TrieNode> children;
     boolean isEndOfWord;
 
