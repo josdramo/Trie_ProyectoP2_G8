@@ -5,7 +5,9 @@
 package controllers;
 
 import com.main.AppState;
+import java.awt.event.MouseEvent;
 import java.util.List;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -39,7 +41,7 @@ public class MainController extends Controller {
     private ListView buscadorListView;
 
     public void onAgregarDelimitador() {
-        String palabra = delimitadoresTextField.getText().trim(); 
+        String palabra = delimitadoresTextField.getText().trim();
         if (!palabra.isEmpty()) {
             if (!delimitadoresListView.getItems().contains(palabra)) {
                 delimitadoresListView.getItems().add(palabra);
@@ -58,13 +60,13 @@ public class MainController extends Controller {
         int indiceSeleccionado = delimitadoresListView.getSelectionModel().getSelectedIndex();
 
         if (indiceSeleccionado != -1) {
-        String palabraEliminada = (String) delimitadoresListView.getItems().get(indiceSeleccionado);
-        delimitadoresListView.getItems().remove(indiceSeleccionado);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Información");
-        alert.setHeaderText("Palabra eliminada");
-        alert.setContentText("La palabra '" + palabraEliminada + "' ha sido eliminada.");
-        alert.showAndWait();
+            String palabraEliminada = (String) delimitadoresListView.getItems().get(indiceSeleccionado);
+            delimitadoresListView.getItems().remove(indiceSeleccionado);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Información");
+            alert.setHeaderText("Palabra eliminada");
+            alert.setContentText("La palabra '" + palabraEliminada + "' ha sido eliminada.");
+            alert.showAndWait();
         } else {
             String textoDelTextField = delimitadoresTextField.getText().trim();
             if (textoDelTextField.isEmpty()) {
@@ -93,8 +95,8 @@ public class MainController extends Controller {
     }
 
     public void onRemoverPalabra() {
-        String palabra = buscadorTextField.getText();
-        if (!palabra.isEmpty()) {
+        String palabra = (String) buscadorListView.getSelectionModel().getSelectedItem();
+        if (palabra != null && !palabra.isEmpty()) {
             boolean eliminada = AppState.getInstance().getDiccionario().eliminarPalabra(palabra);
             if (eliminada) {
                 buscadorTextField.clear();
@@ -128,7 +130,16 @@ public class MainController extends Controller {
         buscadorListView.getItems().addAll(sugerencias);
     }
 
+    public void onBuscarDelimitador() {
+        buscadorTextField.clear();
+        clearBuscadorListView();
+        String prefijo = (String) delimitadoresListView.getSelectionModel().getSelectedItem();
+        List<String> sugerencias = AppState.getInstance().getDiccionario().search(prefijo);
+        buscadorListView.getItems().addAll(sugerencias);
+    }
+
     public void clearBuscadorListView() {
         buscadorListView.getItems().clear();
     }
+
 }
