@@ -12,16 +12,22 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class ViewManager {
     
     private Stage stage;
     
+    private Stage provisionalStage;
+    
     private Scene mainScene;
+    
+    private Scene preloadScene;
     
     public void loadViews() {
         try {
             mainScene = loadScene(Constantes.VIEW_MAIN_FILE_PATH);
+            preloadScene = loadScene(Constantes.VIEW_PRELOAD_FILE_PATH);
         } catch (IOException ex) {
             Logger.getLogger(ViewManager.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -35,9 +41,23 @@ public class ViewManager {
         Controller controller = loader.getController();
         
         // TODO: decidir si pasar app o state
-        controller.setViewManager(this);
+        if (controller != null) {
+            controller.setViewManager(this);
+        }
         
         return new Scene(parent);
+    }
+    
+    public void showPreloadView() {
+        provisionalStage = new Stage(StageStyle.UNDECORATED);
+        
+        provisionalStage.setScene(preloadScene);
+        
+        provisionalStage.show();
+    }
+    
+    public void closePreloadView() {
+        provisionalStage.close();
     }
     
     public void showMainView() {

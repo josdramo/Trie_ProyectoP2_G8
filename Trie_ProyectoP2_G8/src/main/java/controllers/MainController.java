@@ -5,16 +5,13 @@
 package controllers;
 
 import com.main.AppState;
-import java.awt.event.MouseEvent;
 import java.util.List;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import util.FileParser;
 import views.BuscarArchivo;
 import views.Notificacion;

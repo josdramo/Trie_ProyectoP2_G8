@@ -1,8 +1,9 @@
 package com.main;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import util.Serializator;
 import views.BuscarArchivo;
 
@@ -14,25 +15,52 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        restaurar();
-        
         BuscarArchivo.getInstance().setParentStage(primaryStage);
         
         ViewManager manager = new ViewManager();
         
         manager.setStage(primaryStage);
         manager.loadViews();
-        manager.showMainView();
         
-        primaryStage.addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, event -> guardar());
-    }
-    
-    private void restaurar() {
-        AppState appState = Serializator.deserialize(Constantes.APP_STATE_FILE_PATH);
-        AppState.setInstanceIfNotDefined(appState);
+        manager.showPreloadView();
+        
+        Task<Void> restorationTask = new RestorationTask(manager);
+
+        Thread restorationThread = new Thread(restorationTask);
+        restorationThread.start();
     }
     
     private void guardar() {
         Serializator.serialize(AppState.getInstance(), Constantes.APP_STATE_FILE_PATH);
     }
+}
+
+class RestorationTask extends Task<Void> {
+    private final ViewManager manager;
+
+    public RestorationTask(ViewManager manager) {
+        this.manager = manager;
+    }
+
+    @Override
+    protected Void call() throws Exception {
+        restaurarAppState();
+        return null;
+    }
+
+    @Override
+    protected void succeeded() {
+        super.succeeded();
+        Platform.runLater(() -> {
+            manager.closePreloadView();
+            
+            manager.showMainView();
+        });
+    }
+        
+    private void restaurarAppState() {
+        AppState appState = Serializator.deserialize(Constantes.APP_STATE_FILE_PATH);
+        AppState.setInstanceIfNotDefined(appState);
+    }
+
 }
