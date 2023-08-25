@@ -81,6 +81,7 @@ public class MainController extends Controller {
             clearBuscadorListView();
 
             System.out.println("Agregado");
+            actualizarContadorDePalabras();
         }
     }
 
@@ -90,10 +91,9 @@ public class MainController extends Controller {
             boolean eliminada = AppState.getInstance().getDiccionario().eliminarPalabra(palabra);
             if (eliminada) {
                 buscadorTextField.clear();
-                clearBuscadorListView();
-            } else {
-                clearBuscadorListView();
             }
+            clearBuscadorListView();
+            actualizarContadorDePalabras();
         }
     }
 
@@ -105,6 +105,8 @@ public class MainController extends Controller {
         AppState.getInstance().getDiccionario().insertarPalabras(fileParser.parse());
 
         Notificacion.showOperationSuccess("Archivo cargado correctamente");
+        actualizarContadorDePalabras();
+        onBuscar();
     }
 
     public void onBuscar() {
