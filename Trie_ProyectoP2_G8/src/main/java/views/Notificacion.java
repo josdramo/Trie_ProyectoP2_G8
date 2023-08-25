@@ -66,4 +66,13 @@ public class Notificacion {
         notificacion.setContentText(message);
         notificacion.show();
     }
+    
+    public static void showWarning(String title, String message) {
+        Notificacion notificacion = Notificacion.getInstance();
+        notificacion.setAlertType(AlertType.WARNING);
+        notificacion.setTitle("Advertencia");
+        notificacion.setHeaderText(title);
+        notificacion.setContentText(message);
+        notificacion.show();
+    }
 }
