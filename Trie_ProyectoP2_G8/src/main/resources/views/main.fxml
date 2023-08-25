@@ -51,7 +51,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="599.0" prefWidth="729.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
+<VBox prefHeight="599.0" prefWidth="729.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
   <children>
     <MenuBar prefWidth="713.0" style="-fx-background-color: #D98880;" VBox.vgrow="NEVER">
       <menus>
@@ -59,7 +59,7 @@
           <items>
             <MenuItem mnemonicParsing="false" onAction="#onCargar" text="Cargar" />
             <MenuItem mnemonicParsing="false" text="Exportar" />
-            <Menu mnemonicParsing="false" text="Guardar" />
+                  <MenuItem mnemonicParsing="false" onAction="#onMenuGuardar" text="Guardar" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Close" />
             <MenuItem mnemonicParsing="false" text="Save" />

@@ -5,6 +5,7 @@
 package controllers;
 
 import com.main.AppState;
+import com.main.Constantes;
 import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -13,6 +14,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import util.FileParser;
+import util.Serializator;
 import views.BuscarArchivo;
 import views.Notificacion;
 
@@ -107,12 +109,7 @@ public class MainController extends Controller {
         FileParser fileParser = new FileParser(filePath);
         AppState.getInstance().getDiccionario().insertarPalabras(fileParser.parse());
 
-        Notificacion notificacion = Notificacion.getInstance();
-        notificacion.setAlertType(AlertType.INFORMATION);
-        notificacion.setTitle("Éxito");
-        notificacion.setHeaderText("Operación completada");
-        notificacion.setContentText("Archivo cargado correctamente");
-        notificacion.show();
+        Notificacion.showOperationSuccess("Archivo cargado correctamente");
     }
 
     public void onBuscar() {
@@ -138,6 +135,12 @@ public class MainController extends Controller {
 
     public void clearBuscadorListView() {
         buscadorListView.getItems().clear();
+    }
+    
+    public void onMenuGuardar() {
+        Serializator.serialize(AppState.getInstance(), Constantes.APP_STATE_FILE_PATH);
+        
+        Notificacion.showOperationSuccess("Guardado completado yada yada.");
     }
 
 }

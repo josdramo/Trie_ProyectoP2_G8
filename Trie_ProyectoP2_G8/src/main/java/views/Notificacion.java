@@ -58,13 +58,12 @@ public class Notificacion {
         alert.showAndWait();
     }
 
-    public static void main(String[] args) {
+    public static void showOperationSuccess(String message) {
         Notificacion notificacion = Notificacion.getInstance();
         notificacion.setAlertType(AlertType.INFORMATION);
-        notificacion.setTitle("Información");
-        notificacion.setHeaderText("Mensaje de notificación");
-        notificacion.setContentText("¡La operación se completó con éxito!");
-        notificacion.setStageStyle(StageStyle.UTILITY);
+        notificacion.setTitle("Éxito");
+        notificacion.setHeaderText("Operación completada");
+        notificacion.setContentText(message);
         notificacion.show();
     }
 }

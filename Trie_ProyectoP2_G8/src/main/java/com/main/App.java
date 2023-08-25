@@ -29,10 +29,6 @@ public class App extends Application {
         Thread restorationThread = new Thread(restorationTask);
         restorationThread.start();
     }
-    
-    private void guardar() {
-        Serializator.serialize(AppState.getInstance(), Constantes.APP_STATE_FILE_PATH);
-    }
 }
 
 class RestorationTask extends Task<Void> {
