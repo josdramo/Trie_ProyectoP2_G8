@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import util.FileParser;
@@ -25,6 +26,9 @@ import views.Notificacion;
  * @author infrative
  */
 public class MainController extends Controller {
+    
+    @FXML
+    private Label sizeLabel;
 
     @FXML
     private TextField delimitadoresTextField;
@@ -60,7 +64,7 @@ public class MainController extends Controller {
             String palabraEliminada = (String) delimitadoresListView.getItems().get(indiceSeleccionado);
             delimitadoresListView.getItems().remove(indiceSeleccionado);
             
-            Notificacion.showOperationSuccess("La palabra '" + palabraEliminada + "' ha sido eliminada.");
+            Notificacion.showOperationSuccess("La palabra '" + palabraEliminada + "' ha sido eliminada."); 
         } else {
             String textoDelTextField = delimitadoresTextField.getText().trim();
             if (textoDelTextField.isEmpty()) {
@@ -77,6 +81,8 @@ public class MainController extends Controller {
             clearBuscadorListView();
 
             System.out.println("Agregado");
+            
+            actualizarContadorDePalabras();
         }
     }
 
@@ -86,10 +92,10 @@ public class MainController extends Controller {
             boolean eliminada = AppState.getInstance().getDiccionario().eliminarPalabra(palabra);
             if (eliminada) {
                 buscadorTextField.clear();
-                clearBuscadorListView();
-            } else {
-                clearBuscadorListView();
             }
+            
+            clearBuscadorListView();
+            actualizarContadorDePalabras();
         }
     }
 
@@ -147,6 +153,10 @@ public class MainController extends Controller {
             Notificacion.showWarning("Error", "Ha ocurrido un problema inesperado exportando.");
         }
         
+    }
+    
+    public void actualizarContadorDePalabras() {
+        sizeLabel.setText(Integer.toString(AppState.getInstance().getDiccionario().search("").size()));
     }
 
 }

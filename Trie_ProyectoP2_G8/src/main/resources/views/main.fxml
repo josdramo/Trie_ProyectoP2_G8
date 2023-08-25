@@ -176,7 +176,7 @@
     </SplitPane>
     <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">
       <children>
-        <Label maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Tamaño del diccionario: 0" HBox.hgrow="ALWAYS">
+        <Label maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Tamaño del diccionario:" HBox.hgrow="ALWAYS">
           <font>
             <Font size="11.0" fx:id="x3" />
           </font>
@@ -187,6 +187,14 @@
                   <Insets left="5.0" />
                </HBox.margin>
         </Label>
+            <Label fx:id="sizeLabel" maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="0">
+               <font>
+                  <Font size="11.0" fx:id="x31" />
+               </font>
+               <textFill>
+                  <Color red="0.625" green="0.625" blue="0.625" fx:id="x41" />
+               </textFill>
+            </Label>
         <Pane prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
         <Label font="$x3" maxWidth="-1.0" text="Yada Yada Enterprise." textFill="$x4" HBox.hgrow="NEVER">
                <HBox.margin>

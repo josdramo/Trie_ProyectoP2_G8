@@ -5,7 +5,9 @@
 package com.main;
 
 import controllers.Controller;
+import controllers.MainController;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +16,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class ViewManager {
+enum ControllerType {
+    MAIN
+}
+
+public class ViewManager {  
+    private HashMap<ControllerType, Controller> controllers;
     
     private Stage stage;
     
@@ -24,16 +31,20 @@ public class ViewManager {
     
     private Scene preloadScene;
     
+    public ViewManager() {
+        controllers = new HashMap();
+    }
+    
     public void loadViews() {
         try {
-            mainScene = loadScene(Constantes.VIEW_MAIN_FILE_PATH);
-            preloadScene = loadScene(Constantes.VIEW_PRELOAD_FILE_PATH);
+            mainScene = loadScene(Constantes.VIEW_MAIN_FILE_PATH, ControllerType.MAIN);
+            preloadScene = loadScene(Constantes.VIEW_PRELOAD_FILE_PATH, null);
         } catch (IOException ex) {
             Logger.getLogger(ViewManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    private Scene loadScene(String filePath) throws IOException {
+    private Scene loadScene(String filePath, ControllerType type) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(filePath));
         
         Parent parent = loader.load();
@@ -43,6 +54,7 @@ public class ViewManager {
         // TODO: decidir si pasar app o state
         if (controller != null) {
             controller.setViewManager(this);
+            controllers.put(type, controller);
         }
         
         return new Scene(parent);
@@ -63,6 +75,11 @@ public class ViewManager {
     public void showMainView() {
         this.stage.setTitle(Constantes.VIEW_MAIN_TITLE);
         this.stage.setScene(mainScene);
+        
+        MainController mainController = (MainController) controllers.get(ControllerType.MAIN);
+        mainController.onBuscar();
+        mainController.actualizarContadorDePalabras();
+        
         this.stage.show();
     }
     
