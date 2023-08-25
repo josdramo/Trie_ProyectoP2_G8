@@ -2,7 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.openjfx</groupId>
-    <artifactId>Trie_ProyectoP2_G8</artifactId>
+    <artifactId>Grupo_08</artifactId>
     <version>1.0.0</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -49,5 +49,5 @@
             </plugin>
         </plugins>
     </build>
-    <name>Trie P2G8</name>
+    <name>Grupo_08</name>
 </project>
