@@ -79,10 +79,6 @@ public class MainController extends Controller {
         }
     }
 
-    public void onBusquedaInversa() {
-
-    }
-
     public void onAgregarPalabra() {
         String palabra = buscadorTextField.getText();
         if (!palabra.isEmpty()) {
@@ -131,11 +127,16 @@ public class MainController extends Controller {
     }
 
     public void onBuscarDelimitador() {
-        buscadorTextField.clear();
-        clearBuscadorListView();
-        String prefijo = (String) delimitadoresListView.getSelectionModel().getSelectedItem();
-        List<String> sugerencias = AppState.getInstance().getDiccionario().search(prefijo);
-        buscadorListView.getItems().addAll(sugerencias);
+        String delimitador = (String) delimitadoresListView.getSelectionModel().getSelectedItem();
+        if (busquedaInversaCheckBox.isSelected()) {
+            List<String> palabrasEncontradas = AppState.getInstance().getDiccionario().busquedaInversa(delimitador);
+            buscadorListView.getItems().clear();
+            buscadorListView.getItems().addAll(palabrasEncontradas);
+        } else {
+            clearBuscadorListView();
+            List<String> sugerencias = AppState.getInstance().getDiccionario().search(delimitador);
+            buscadorListView.getItems().addAll(sugerencias);
+        }
     }
 
     public void clearBuscadorListView() {

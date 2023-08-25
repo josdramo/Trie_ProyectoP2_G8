@@ -105,6 +105,25 @@ public class Triee implements Serializable {
         }
         return true;
     }
+
+    public List<String> busquedaInversa(String terminacion) {
+        List<String> palabrasEncontradas = new ArrayList<>();
+        buscaquedaInversaRecursivo(root, "", terminacion, palabrasEncontradas);
+        return palabrasEncontradas;
+    }
+
+    private void buscaquedaInversaRecursivo(TrieNode nodoActual, String prefijo, String terminacion, List<String> palabrasEncontradas) {
+        if (nodoActual.isEndOfWord) {
+            if (prefijo.endsWith(terminacion)) {
+                palabrasEncontradas.add(prefijo);
+            }
+        }
+
+        for (char ch : nodoActual.children.keySet()) {
+            TrieNode nodoHijo = nodoActual.children.get(ch);
+            buscaquedaInversaRecursivo(nodoHijo, prefijo + ch, terminacion, palabrasEncontradas);
+        }
+    }
 }
 
 class TrieNode implements Serializable {

@@ -113,7 +113,7 @@
                         <ListView fx:id="delimitadoresListView" prefHeight="424.0" prefWidth="202.0" />
                         <HBox prefHeight="1.0" prefWidth="202.0" spacing="35.0">
                            <children>
-                              <CheckBox fx:id="busquedaInversaCheckBox" mnemonicParsing="false" onAction="#onBusquedaInversa" text="Búsqueda inversa">
+                              <CheckBox fx:id="busquedaInversaCheckBox" mnemonicParsing="false" text="Búsqueda inversa">
                                  <HBox.margin>
                                     <Insets top="4.0" />
                                  </HBox.margin>
