@@ -8,7 +8,6 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="259.0" prefWidth="456.0" spacing="10.0" style="-fx-background-color: F9EBEA;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox prefHeight="120.0" prefWidth="450.0" style="-fx-background-color: #A93226;" />
@@ -20,9 +19,8 @@
       <Line endX="125.0" startX="-332.5" />
       <ImageView fitHeight="91.0" fitWidth="97.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../../IHC/2doParcial/loading-loading-forever.gif" />
-         </image>
-      </ImageView>
+            <Image url="@../gif/loading.gif" />
+         </image></ImageView>
       <HBox prefHeight="120.0" prefWidth="456.0" style="-fx-background-color: #A93226;" />
    </children>
 </VBox>
