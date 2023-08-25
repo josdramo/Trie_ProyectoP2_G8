@@ -64,7 +64,7 @@ public class MainController extends Controller {
             String palabraEliminada = (String) delimitadoresListView.getItems().get(indiceSeleccionado);
             delimitadoresListView.getItems().remove(indiceSeleccionado);
             
-            Notificacion.showOperationSuccess("La palabra '" + palabraEliminada + "' ha sido eliminada."); 
+            Notificacion.showOperationSuccess("La palabra '" + palabraEliminada + "' ha sido eliminada.");
         } else {
             String textoDelTextField = delimitadoresTextField.getText().trim();
             if (textoDelTextField.isEmpty()) {
@@ -81,8 +81,6 @@ public class MainController extends Controller {
             clearBuscadorListView();
 
             System.out.println("Agregado");
-            
-            actualizarContadorDePalabras();
         }
     }
 
@@ -92,10 +90,10 @@ public class MainController extends Controller {
             boolean eliminada = AppState.getInstance().getDiccionario().eliminarPalabra(palabra);
             if (eliminada) {
                 buscadorTextField.clear();
+                clearBuscadorListView();
+            } else {
+                clearBuscadorListView();
             }
-            
-            clearBuscadorListView();
-            actualizarContadorDePalabras();
         }
     }
 
@@ -158,5 +156,4 @@ public class MainController extends Controller {
     public void actualizarContadorDePalabras() {
         sizeLabel.setText(Integer.toString(AppState.getInstance().getDiccionario().search("").size()));
     }
-
 }
