@@ -6,6 +6,7 @@ import javafx.concurrent.Task;
 import javafx.stage.Stage;
 import util.Serializator;
 import views.BuscarArchivo;
+import views.BuscarRuta;
 
 public class App extends Application {
     
@@ -16,6 +17,7 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         BuscarArchivo.getInstance().setParentStage(primaryStage);
+        BuscarRuta.getInstance().setStage(primaryStage);
         
         ViewManager manager = new ViewManager();
         

@@ -6,6 +6,9 @@ package controllers;
 
 import com.main.AppState;
 import com.main.Constantes;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
@@ -14,6 +17,7 @@ import javafx.scene.control.TextField;
 import util.FileParser;
 import util.Serializator;
 import views.BuscarArchivo;
+import views.BuscarRuta;
 import views.Notificacion;
 
 /**
@@ -128,6 +132,21 @@ public class MainController extends Controller {
         Serializator.serialize(AppState.getInstance(), Constantes.APP_STATE_FILE_PATH);
         
         Notificacion.showOperationSuccess("Guardado completado yada yada.");
+    }
+    
+    public void onExportar() {
+        String ruta = BuscarRuta.getInstance().show();
+        
+        try (FileWriter escritor = new FileWriter(ruta + File.separator + "diccionario.txt")) {
+            for (String palabra : AppState.getInstance().getDiccionario().search("")) {
+                escritor.write(palabra + System.lineSeparator());
+            }
+            
+            Notificacion.showOperationSuccess("Exportación completada.");
+        } catch (IOException e) {
+            Notificacion.showWarning("Error", "Ha ocurrido un problema inesperado exportando.");
+        }
+        
     }
 
 }

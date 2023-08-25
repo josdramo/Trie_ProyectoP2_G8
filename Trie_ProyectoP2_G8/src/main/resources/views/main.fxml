@@ -58,7 +58,7 @@
         <Menu mnemonicParsing="false" style="-fx-background-color: #CD6155; -fx-background-radius: 3;" text="File">
           <items>
             <MenuItem mnemonicParsing="false" onAction="#onCargar" text="Cargar" />
-            <MenuItem mnemonicParsing="false" text="Exportar" />
+            <MenuItem mnemonicParsing="false" onAction="#onExportar" text="Exportar" />
                   <MenuItem mnemonicParsing="false" onAction="#onMenuGuardar" text="Guardar" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Close" />
